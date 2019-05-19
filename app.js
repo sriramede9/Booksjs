@@ -30,12 +30,14 @@ UI.prototype.addBookToList = function(book) {
 
   this.clearFields();
 
-  document.querySelector(".delete").addEventListener("click", function(e) {
-    e.preventDefault();
-    console.log("test confirmed");
-  });
-
   //console.log(row);
+};
+
+//delete book
+UI.prototype.deleteBook = function(target) {
+  if (target.className == "delete") {
+    target.parentElement.parentElement.remove();
+  }
 };
 
 //clear fiesds
@@ -98,4 +100,14 @@ document.getElementById("book-form").addEventListener("submit", function(e) {
   }
 
   //add book to list
+});
+
+//event listener for delete
+document.getElementById("book-list").addEventListener("click", e => {
+  e.preventDefault();
+  // console.log(123);
+  const ui = new UI();
+  console.log(e.target);
+  ui.deleteBook(e.target);
+  ui.showalert("removed Succesffully!", "success");
 });
